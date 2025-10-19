@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>I Love You Shruti 🌹</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --rose1: #ffdde1;
+      --rose2: #f6a5c0;
+      --rose3: #e86f8f;
+      --accent: #fff7f9;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06), transparent 10%),
+                  linear-gradient(135deg, var(--rose1) 0%, var(--rose2) 50%, var(--rose3) 100%);
+      overflow:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'><g opacity='0.06'><circle cx='100' cy='120' r='120' fill='%23ffffff'/><circle cx='680' cy='650' r='140' fill='%23ffffff'/></g></svg>");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:2rem;
+      box-sizing:border-box;
+    }
+
+    h1{
+      margin:0;
+      color:var(--accent);
+      font-family: "Great Vibes", serif;
+      font-size: clamp(36px, 9vw, 120px);
+      letter-spacing:1px;
+      text-shadow:
+        0 2px 0 rgba(0,0,0,0.08),
+        0 10px 30px rgba(0,0,0,0.18),
+        0 0 30px rgba(255,255,255,0.1);
+    }
+
+    p.sub{
+      margin-top:10px;
+      color: rgba(255,245,247,0.9);
+      font-size: clamp(14px, 2.4vw, 20px);
+      font-weight:600;
+      letter-spacing:0.6px;
+    }
+
+    .message {
+      margin-top: 2rem;
+      max-width: 700px;
+      color: rgba(255,245,247,0.95);
+      font-size: clamp(15px, 2vw, 22px);
+      line-height: 1.6;
+      font-weight:400;
+      background: rgba(255,255,255,0.08);
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .hearts {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+    }
+    .heart {
+      position:absolute;
+      width:40px;
+      height:40px;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin:center bottom;
+      opacity:0.9;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.12));
+    }
+
+    .heart svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) scale(0.9) rotate(0deg); opacity:0; }
+      8% { opacity:0.9; }
+      45% { transform: translateY(-40vh) translateX(10px) scale(1.05) rotate(8deg); opacity:0.95; }
+      80% { transform: translateY(-90vh) translateX(-20px) scale(0.95) rotate(-6deg); opacity:0.6; }
+      100% { transform: translateY(-120vh) translateX(0) scale(0.9) rotate(-12deg); opacity:0; }
+    }
+
+    .note {
+      position:fixed;
+      bottom:12px;
+      left:12px;
+      color: rgba(255,255,255,0.7);
+      font-size:12px;
+      z-index:3;
+      background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding:8px 10px;
+      border-radius:10px;
+      backdrop-filter: blur(4px);
+    }
+
+    .s{ width:22px; height:22px; }
+    .m{ width:34px; height:34px; }
+    .l{ width:56px; height:56px; }
+
+    @media (max-width:480px){
+      body::before{ background-position: top; }
+      .note{ font-size:11px; padding:6px 8px; }
+      .message { font-size: 16px; padding: 1rem; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h1>I Love You Shruti</h1>
+      <p class="sub">Forever &amp; Always 🌹</p>
+      <div class="message">
+        <p><strong>Shruti, my love,</strong></p>
+        <p>Every moment with you feels like a dream I never want to wake from. You’re the smile that brightens my mornings and the peace that calms my nights. When I think of love, I think of you — your voice, your laugh, your heart that feels like home. No distance, no time, no world could ever change what I feel for you. You are my forever, Shruti — my heart, my reason, my everything. 💖</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hearts" id="hearts"></div>
+  <div class="note">Tip: Share this page URL with Shruti — open in any browser.</div>
+
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+    function heartSVG(c1, c2){
+      return `<svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g${Math.random().toString(36).substr(2,6)}" x1="0" x2="1"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs><path fill="url(#g${Math.random().toString(36).substr(2,6)})" d="M23.6,0c-2.7,0-5,1.4-6.6,3.6C14.4,1.4,12.1,0,9.4,0C4.2,0,0,4.2,0,9.4c0,11.3,16,20.2,16,20.2
+        s16-8.9,16-20.2C32,4.2,27.8,0,23.6,0z"/></svg>`;
+    }
+    function createHeart(){
+      const el = document.createElement('div');
+      el.classList.add('heart');
+      const sizes = ['s','m','l'];
+      el.classList.add(sizes[Math.floor(Math.random()*sizes.length)]);
+      el.style.left = Math.random()*100 + '%';
+      el.style.top = (110 + Math.random()*20) + '%';
+      const pal = [['#ff6b81','#ff9bb3'],['#ff4d6d','#ff80a1'],['#ff7aa2','#ffb3c7'],['#ff9fb8','#ffd6e3']][Math.floor(Math.random()*4)];
+      el.innerHTML = heartSVG(pal[0], pal[1]);
+      const duration = 8 + Math.random()*8;
+      const delay = Math.random()*-10;
+      el.style.animation = `floatUp ${duration}s linear ${delay}s forwards`;
+      heartsContainer.appendChild(el);
+      setTimeout(()=>el.remove(), (duration + Math.abs(delay) + 1) * 1000);
+    }
+    let spawnRate = 700;
+    function startHearts(){
+      for(let i=0;i<12;i++){ createHeart(); }
+      window.heartInterval = setInterval(createHeart, spawnRate);
+    }
+    startHearts();
+    document.addEventListener('click', ()=>{ for(let i=0;i<8;i++){ createHeart(); }});
+  </script>
+</body>
+</html>
